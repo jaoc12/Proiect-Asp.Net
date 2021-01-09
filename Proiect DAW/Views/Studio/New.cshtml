@@ -1,0 +1,33 @@
+﻿@model Proiect_DAW.Models.Studio
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Studio", method: FormMethod.Post))
+{
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.TextBoxFor(s => s.Name, null, new { placeholder = "Type in the studio's name", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("FoundingDate", "Founding Date:")
+    <br />
+    @Html.TextBoxFor(s => s.FoundingDate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+    @Html.ValidationMessageFor(s => s.FoundingDate, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(s => s.CEO, "CEO:")
+    <br />
+    @Html.TextBoxFor(s => s.CEO, null, new { placeholder = "Type in the CEO", @class = "form-control" })
+    @Html.ValidationMessageFor(s => s.CEO, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+
+@Html.ActionLink("Back", "Index")

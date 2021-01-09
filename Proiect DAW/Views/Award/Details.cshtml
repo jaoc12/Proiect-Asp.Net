@@ -1,0 +1,51 @@
+﻿@model Proiect_DAW.Models.Award
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Html.Label("Name", "Name:")
+        <br />
+        @Html.DisplayFor(a => a.Name)
+        <br />
+        <br />
+
+        @Html.Label("Description", "Description: ")
+        @Html.DisplayFor(a => a.Description)
+    </div>
+</div>
+<br />
+
+@if (Model.AwardedMovies.Count > 0)
+{
+    @Html.Label("Movies", "Award winners:")
+<ul>
+    @foreach (var movie in Model.AwardedMovies)
+    {
+        <li>@Html.ActionLink(movie.Title, "Details", "Movie", routeValues: new { id = movie.MovieId }, null)</li>
+    }
+</ul>
+}
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Award", method: FormMethod.Get,
+    routeValues: new { id = Model.AwardId }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+<br />
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Award", method: FormMethod.Post,
+    routeValues: new { id = Model.AwardId }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+<br />
+
+@Html.ActionLink("Go back to the list of awards.", "Index")
+

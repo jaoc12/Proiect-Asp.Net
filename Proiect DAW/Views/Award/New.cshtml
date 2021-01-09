@@ -1,0 +1,28 @@
+﻿@model Proiect_DAW.Models.Award
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Award", method: FormMethod.Post))
+{
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.TextBoxFor(a => a.Name, null, new { placeholder = "Type in the award name", @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextBoxFor(a => a.Description, null, new { placeholder = "Type in the award description", @class = "form-control" })
+    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+
+@Html.ActionLink("Back", "Index")
+

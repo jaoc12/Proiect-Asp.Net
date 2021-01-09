@@ -1,0 +1,37 @@
+﻿@model Proiect_DAW.Models.Studio
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Studio"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(s => s.StudioId)
+    <br />
+
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.EditorFor(s => s.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(s => s.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("FoundingDate", "Founding Date:")
+    <br />
+    @Html.EditorFor(s => s.FoundingDate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+    @Html.ValidationMessageFor(s => s.FoundingDate, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(s => s.CEO, "CEO:")
+    <br />
+    @Html.EditorFor(s => s.CEO, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(s => s.CEO, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+
+@Html.ActionLink("Back", "Details", routeValues: new { id = Model.StudioId })

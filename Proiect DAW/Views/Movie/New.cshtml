@@ -1,0 +1,66 @@
+﻿@model Proiect_DAW.Models.Movie
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Movie", method: FormMethod.Post))
+{
+    @Html.Label("Title", "Title:")
+    <br />
+    @Html.TextBoxFor(m => m.Title, null, new { placeHolder = "Type in the movie's title", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Studio", "Studio:")
+    <br />
+    @Html.DropDownListFor(m => m.StudioId, new SelectList(Model.StudiosList, "Value", "Text"),
+        "Choose a studio", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.StudioId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextBoxFor(m => m.Description, null, new { placeholder = "Type in the movie description", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(m => m.AwardsList, "Choose awards:")
+    <br />
+    for (int i = 0; i < Model.AwardsList.Count(); i++)
+    {
+        @Html.HiddenFor(m => m.AwardsList[i].Id)
+        @Html.HiddenFor(m => m.AwardsList[i].Name)
+        @Html.CheckBoxFor(m => m.AwardsList[i].Checked)
+        @Html.DisplayFor(m => m.AwardsList[i].Name)
+        <br />
+    }
+    <br />
+
+    for (int i = 0; i < Model.JobsList.Count(); i++)
+    {
+        <p>Choose @Model.JobsList[i].Type</p>
+
+        for (int j = 0; j < Model.PeopleList.Count(); j++)
+        {
+            int k = i * Model.PeopleList.Count() + j;
+            @Html.HiddenFor(m => m.CreditsList[k].Id)
+            @Html.HiddenFor(m => m.CreditsList[k].Name)
+            @Html.CheckBoxFor(m => m.CreditsList[k].Checked)
+            @Html.DisplayFor(m => m.CreditsList[k].Name)
+            <br />
+        }
+        <br />
+    }
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+<br />
+
+@Html.ActionLink("Back", "Index")

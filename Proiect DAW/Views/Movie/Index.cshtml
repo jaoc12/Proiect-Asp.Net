@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Movies";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var movie in ViewBag.Movies)
+{
+    <div class="panel-body">
+        @Html.Label("Title", "Title:")
+        <br />
+        <p>@movie.Title</p>
+
+        @using (Html.BeginForm ( actionName: "Details", controllerName: "Movie", method: FormMethod.Get,
+                routeValues: new { id = movie.MovieId }))
+        {
+            <button class="btn btn-primary">Details</button>
+        }
+    </div>
+    <br />
+}
+
+@Html.ActionLink("Add movie", "New")

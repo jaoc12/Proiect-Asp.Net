@@ -1,0 +1,28 @@
+﻿@model Proiect_DAW.Models.Job
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Job", method: FormMethod.Post))
+{
+    @Html.Label("Type", "Type:")
+    <br />
+    @Html.TextBoxFor(j => j.Type, null, new { placeholder = "Type in the job's type", @class = "form-control" })
+    @Html.ValidationMessageFor(j => j.Type, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextBoxFor(j => j.Description, null, new { placeholder = "Type in the job's description", @class = "form-control" })
+    @Html.ValidationMessageFor(j => j.Description, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+
+@Html.ActionLink("Back", "Index")
+

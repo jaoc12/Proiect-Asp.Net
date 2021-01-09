@@ -1,0 +1,68 @@
+﻿@model Proiect_DAW.Models.Movie
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Movie"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(m => m.MovieId)
+    <br />
+
+    @Html.Label("Title", "Title:")
+    <br />
+    @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Studio", "Studio:")
+    <br />
+    @Html.DropDownListFor(m => m.StudioId, new SelectList(Model.StudiosList, "Value", "Text"),
+        "Choose a studio", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.StudioId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(m => m.Description, "Description:")
+    <br />
+    @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(m => m.AwardsList, "Choose awards:")
+    <br />
+    for (int i = 0; i < Model.AwardsList.Count(); i++)
+    {
+        @Html.HiddenFor(m => m.AwardsList[i].Id)
+        @Html.HiddenFor(m => m.AwardsList[i].Name)
+        @Html.CheckBoxFor(m => m.AwardsList[i].Checked)
+        @Html.DisplayFor(m => m.AwardsList[i].Name)
+        <br />
+    }
+    <br />
+
+    for (int i = 0; i < Model.JobsList.Count(); i++)
+    {
+        <p>Choose @Model.JobsList[i].Type</p>
+
+        for (int j = 0; j < Model.PeopleList.Count(); j++)
+        {
+            int k = i * Model.PeopleList.Count() + j;
+            @Html.HiddenFor(m => m.CreditsList[k].Id)
+            @Html.HiddenFor(m => m.CreditsList[k].Name)
+            @Html.CheckBoxFor(m => m.CreditsList[k].Checked)
+            @Html.DisplayFor(m => m.CreditsList[k].Name)
+            <br />
+        }
+        <br />
+    }
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+<br />
+
+@Html.ActionLink("Back", "Details", routeValues: new { id = Model.MovieId })

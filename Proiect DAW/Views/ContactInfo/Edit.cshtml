@@ -1,0 +1,32 @@
+﻿@model Proiect_DAW.Models.ContactInfo
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "ContactInfo"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(c => c.ContactInfoId)
+    <br />
+
+    @Html.LabelFor(p => p.ContactPhone, "Phone number:")
+    <br />
+    @Html.EditorFor(p => p.ContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.ContactPhone, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(p => p.ContactEmail, "Email address:")
+    <br />
+    @Html.EditorFor(p => p.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.ContactEmail, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+
+
+@Html.ActionLink("Back", "Details", routeValues: new { id = Model.ContactInfoId })

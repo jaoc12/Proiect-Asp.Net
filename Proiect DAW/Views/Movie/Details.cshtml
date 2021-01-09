@@ -1,0 +1,74 @@
+﻿@model Proiect_DAW.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Html.Label("Title", "Title:")
+        <br />
+        <p>@Model.Title</p>
+        <br />
+
+        @if (Model.Studio != null)
+        {
+            @Html.Label("Studio", "Studio:")
+            <br />
+            @Html.ActionLink(Model.Studio.Name, "Details", "Studio", routeValues: new { id = Model.Studio.StudioId }, null)
+            <br />
+            <br />
+        }
+
+        @Html.Label("Description", "Description: ")
+        @Html.DisplayFor(m => m.Description)
+        <br />
+        <br />
+
+        @if (Model.Awards.Count > 0)
+        {
+            @Html.Label("Awards", "Awards:")
+            <ul>
+                @foreach (var award in Model.Awards)
+                {
+                    <li>@Html.ActionLink(award.Name, "Details", "Award", routeValues: new { id = award.AwardId }, null)</li>
+                }
+            </ul>
+        }
+
+        @foreach (var job in Model.JobsList)
+        {
+            <p>@job.Type</p>
+            <ul>
+                @foreach (var credit in Model.Credits)
+                {
+                    if (credit.JobId == job.JobId)
+                    {
+                        <li>@Html.ActionLink(credit.Person.Name, "Details", "Person", routeValues: new { id = credit.PersonId }, null)</li>
+                    }
+                }
+            </ul>
+        }
+    </div>
+</div>
+
+<div class="btn-group">
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Movie", method: FormMethod.Get,
+        routeValues: new { id = Model.MovieId }))
+    {
+        <button style="margin-right:5px" class="btn btn-primary" type="submit">Update</button>
+    }
+
+    @using (Html.BeginForm(actionName: "Delete", controllerName: "Movie", method: FormMethod.Post,
+        routeValues: new { id = Model.MovieId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary" type="submit">Delete</button>
+    }
+</div>
+<br />
+<br />
+
+@Html.ActionLink("Go back to the list of movies.", "Index")

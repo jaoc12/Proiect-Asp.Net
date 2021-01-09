@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Credits";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var credit in ViewBag.Credits)
+{
+    <div class="panel-body">
+        @Html.Label("Credit", "Credit:")
+        <br />
+        <p>@credit.PersonId</p>
+
+        @using (Html.BeginForm(actionName: "Details", controllerName: "Credit", method: FormMethod.Get,
+                routeValues: new { id = credit.CreditId }))
+        {
+            <button class="btn btn-primary">Details</button>
+        }
+    </div>
+}
+
+@Html.ActionLink("Add job", "New")
+

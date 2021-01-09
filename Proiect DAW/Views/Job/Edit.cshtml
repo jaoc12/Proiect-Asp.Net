@@ -1,0 +1,31 @@
+﻿@model Proiect_DAW.Models.Job
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Job"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(j => j.JobId)
+    <br />
+
+    @Html.Label("Type", "Type:")
+    <br />
+    @Html.EditorFor(j => j.Type, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(j => j.Type, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(j => j.Description, "Description:")
+    <br />
+    @Html.EditorFor(j => j.Description, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(j => j.Description, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+
+@Html.ActionLink("Back", "Details", routeValues: new { id = Model.JobId })

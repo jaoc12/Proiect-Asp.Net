@@ -1,0 +1,44 @@
+﻿@model Proiect_DAW.Models.PersonContactViewModel
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Person"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(p => p.PersonId)
+    <br />
+
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Birthdate", "Birthdate:")
+    <br />
+    @Html.EditorFor(p => p.Birthday, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Birthday, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(p => p.ContactPhone, "Phone number:")
+    <br />
+    @Html.EditorFor(p => p.ContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.ContactPhone, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(p => p.ContactEmail, "Email address:")
+    <br />
+    @Html.EditorFor(p => p.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.ContactEmail, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+<br />
+
+@Html.ActionLink("Back", "Details", routeValues: new { id = Model.PersonId })

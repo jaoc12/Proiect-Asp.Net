@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Awards";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var award in ViewBag.Awards)
+{
+    <div class="panel-body">
+        @Html.Label("Award", "Award:")
+        <br />
+        <p>@award.Name</p>
+
+        @using (Html.BeginForm(actionName: "Details", controllerName: "Award", method: FormMethod.Get,
+                routeValues: new { id = award.AwardId }))
+        {
+            <button class="btn btn-primary">Details</button>
+        }
+    </div>
+    <br />
+}
+
+@Html.ActionLink("Add award", "New")
+

@@ -1,0 +1,65 @@
+﻿@model Proiect_DAW.Models.Person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Html.Label("Name", "Name:")
+        <br />
+        @Html.DisplayFor(p => p.Name)
+        <br />
+        <br />
+
+        @Html.Label("Birthdate", "Birthdate:")
+        @Html.DisplayFor(p => p.Birthday)
+        <br />
+        <br />
+
+        @if (Model.MoviesList.Count() > 0)
+        {
+            @Html.Label("Movies", "Movies:")
+            <br />
+            <ul>
+                @foreach (var movie in Model.MoviesList)
+                {
+                    <li>@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)</li>
+                }
+            </ul>
+            <br />
+        }
+        else
+        {
+            @Html.Display("Not involved in any movie.")
+        }
+
+        @Html.Label("ContactPhone", "Contact Phone: ")
+        @Html.DisplayFor(p => p.ContactInfo.ContactPhone)
+        <br />
+        @Html.Label("ContactEmail", "Contact Email: ")
+        @Html.DisplayFor(p => p.ContactInfo.ContactEmail)
+    </div>
+</div>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Person", method: FormMethod.Get,
+    routeValues: new { id = Model.PersonId }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+<br />
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Person", method: FormMethod.Post,
+    routeValues: new { id = Model.PersonId }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+<br />
+
+@Html.ActionLink("Go back to the list of people.", "Index")
+<br />
+@Html.ActionLink("Go back to the list of contact infos.", "Index", "ContactInfo")
+

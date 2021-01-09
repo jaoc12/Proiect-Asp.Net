@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Studios";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var studio in ViewBag.Studios)
+{
+    <div class="panel-body">
+        @Html.Label("Studio", "Studio:")
+        <br />
+        <p>@studio.Name</p>
+
+        @using (Html.BeginForm(actionName: "Details", controllerName: "Studio", method: FormMethod.Get,
+                routeValues: new { id = studio.StudioId }))
+        {
+            <button class="btn btn-primary">Details</button>
+        }
+    </div>
+    <br />
+}
+
+@Html.ActionLink("Add studio", "New")
+

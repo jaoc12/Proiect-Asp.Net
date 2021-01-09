@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "People";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var person in ViewBag.People)
+{
+    <div class="panel-body">
+        @Html.Label("Person", "Person:")
+        <br />
+        <p>@person.Name</p>
+
+        @using (Html.BeginForm(actionName: "Details", controllerName: "Person", method: FormMethod.Get,
+                routeValues: new { id = person.PersonId }))
+        {
+            <button class="btn btn-primary">Details</button>
+        }
+    </div>
+}
+
+@Html.ActionLink("Add person", "New")
+

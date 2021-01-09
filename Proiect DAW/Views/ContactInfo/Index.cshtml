@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Contact Information";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var person in ViewBag.People)
+{
+    <div class="panel-body">
+        @Html.Label("Person", "Person:")
+        <br />
+        <p>@person.Name</p>
+
+        @Html.Label("ContactPhone", "Contact Phone: ")
+        <p>@person.ContactInfo.ContactPhone</p>
+
+        @Html.Label("ContactEmail", "Contact Email: ")
+        <p>@person.ContactInfo.ContactEmail</p>
+
+        <div class="btn-group">
+            @using (Html.BeginForm(actionName: "Details", controllerName: "ContactInfo", method: FormMethod.Get,
+            routeValues: new { id = person.PersonId }))
+            {
+                <button class="btn btn-primary">Details</button>
+            }
+
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "ContactInfo", method: FormMethod.Get,
+            routeValues: new { id = person.ContactInfo.ContactInfoId }))
+            {
+                <button class="btn btn-primary">Edit</button>
+            }
+        </div>
+    </div>
+    <br />
+}
+
+@Html.ActionLink("Add contact info", "New")
+

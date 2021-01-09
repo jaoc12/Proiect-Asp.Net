@@ -1,0 +1,60 @@
+﻿@model Proiect_DAW.Models.Studio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Html.Label("Name", "Name:")
+        <br />
+        @Html.DisplayFor(s => s.Name)
+        <br />
+        <br />
+
+        @Html.Label("FoundingDate", "Founding Date:")
+        @Html.DisplayFor(s => s.FoundingDate)
+        <br />
+        <br />
+
+        @Html.Label("CEO", "CEO:")
+        @Html.DisplayFor(s => s.CEO)
+        <br />
+        <br />
+
+        @if (Model.Movies.Count() > 0)
+        {
+            @Html.Label("Movies", "Movies:")
+            <br />
+            <ul>
+                @foreach (var movie in Model.Movies)
+                {
+                    <li>@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId}, null)</li>
+                }
+            </ul>
+            <br />
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Studio", method: FormMethod.Get,
+    routeValues: new { id = Model.StudioId }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+<br />
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Studio", method: FormMethod.Post,
+    routeValues: new { id = Model.StudioId }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+<br />
+
+@Html.ActionLink("Go back to the list of studios.", "Index")
+<br />
+@Html.ActionLink("Go back to the list of movies.", "Index", "Movie")
+

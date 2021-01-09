@@ -1,0 +1,31 @@
+﻿@model Proiect_DAW.Models.Award
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Award"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(a => a.AwardId)
+    <br />
+
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.EditorFor(a => a.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(a => a.Description, "Description:")
+    <br />
+    @Html.EditorFor(a => a.Description, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+
+@Html.ActionLink("Back", "Details", routeValues: new { id = Model.AwardId })
