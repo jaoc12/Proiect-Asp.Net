@@ -12,7 +12,7 @@
         <br />
         <p>@movie.Title</p>
 
-        @using (Html.BeginForm ( actionName: "Details", controllerName: "Movie", method: FormMethod.Get,
+        @using (Html.BeginForm(actionName: "Details", controllerName: "Movie", method: FormMethod.Get,
                 routeValues: new { id = movie.MovieId }))
         {
             <button class="btn btn-primary">Details</button>
@@ -22,3 +22,5 @@
 }
 
 @Html.ActionLink("Add movie", "New")
+<br />
+@Html.ActionLink("Back to start", "Index", "Start")

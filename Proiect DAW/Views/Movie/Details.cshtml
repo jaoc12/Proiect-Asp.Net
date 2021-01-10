@@ -37,20 +37,24 @@
                 }
             </ul>
         }
+    </div>
 
+    <div class="row">
         @foreach (var job in Model.JobsList)
-        {
-            <p>@job.Type</p>
-            <ul>
-                @foreach (var credit in Model.Credits)
-                {
-                    if (credit.JobId == job.JobId)
+            {
+            <div class="col-md-4">
+                <p>@job.Type</p>
+                <ul>
+                    @foreach (var credit in Model.Credits)
                     {
-                        <li>@Html.ActionLink(credit.Person.Name, "Details", "Person", routeValues: new { id = credit.PersonId }, null)</li>
+                        if (credit.JobId == job.JobId)
+                        {
+                            <li>@Html.ActionLink(credit.Person.Name, "Details", "Person", routeValues: new { id = credit.PersonId }, null)</li>
+                        }
                     }
-                }
-            </ul>
-        }
+                </ul>
+            </div>
+            }
     </div>
 </div>
 

@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\StartController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -387,6 +388,7 @@
     <Content Include="Views\Award\Details.cshtml" />
     <Content Include="Views\Award\Edit.cshtml" />
     <Content Include="Views\Award\New.cshtml" />
+    <Content Include="Views\Start\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
