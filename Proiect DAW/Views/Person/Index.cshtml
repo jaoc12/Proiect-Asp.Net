@@ -20,6 +20,9 @@
     </div>
 }
 
-@Html.ActionLink("Add person", "New")
-<br />
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Add person", "New")
+    <br />
+}
 @Html.ActionLink("Back to start", "Index", "Start")

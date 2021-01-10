@@ -39,6 +39,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing studio id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult New()
         {
@@ -46,6 +47,7 @@ namespace Proiect_DAW.Controllers
             return View(studio);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult New(Studio studioRequest)
         {
@@ -64,6 +66,7 @@ namespace Proiect_DAW.Controllers
             return View(studioRequest);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public ActionResult Delete(int id)
         {
@@ -77,6 +80,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Could not find the studio with id " + id.ToString() + "!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -94,6 +98,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing studio id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Studio studioRequest)
         {
             if (ModelState.IsValid)

@@ -34,6 +34,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing job id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult New()
         {
@@ -41,6 +42,7 @@ namespace Proiect_DAW.Controllers
             return View(award);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult New(Award awardRequest)
         {
@@ -66,6 +68,7 @@ namespace Proiect_DAW.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public ActionResult Delete(int id)
         {
@@ -79,6 +82,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Could not find the award with id " + id.ToString() + "!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -96,6 +100,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing award id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public ActionResult Edit(int id, Award awardRequest)
         {

@@ -31,7 +31,7 @@
             <ul>
                 @foreach (var movie in Model.Movies)
                 {
-                    <li>@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId}, null)</li>
+                    <li>@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)</li>
                 }
             </ul>
             <br />
@@ -39,20 +39,23 @@
     </div>
 </div>
 
-@using (Html.BeginForm(actionName: "Edit", controllerName: "Studio", method: FormMethod.Get,
-    routeValues: new { id = Model.StudioId }))
+@if (User.IsInRole("Admin"))
 {
-    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
-}
-<br />
+    using (Html.BeginForm(actionName: "Edit", controllerName: "Studio", method: FormMethod.Get,
+        routeValues: new { id = Model.StudioId }))
+    {
+        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+    }
+    <br />
 
-@using (Html.BeginForm(actionName: "Delete", controllerName: "Studio", method: FormMethod.Post,
-    routeValues: new { id = Model.StudioId }))
-{
-    @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+    using (Html.BeginForm(actionName: "Delete", controllerName: "Studio", method: FormMethod.Post,
+            routeValues: new { id = Model.StudioId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+    }
+    <br />
 }
-<br />
 
 @Html.ActionLink("Go back to the list of studios.", "Index")
 <br />

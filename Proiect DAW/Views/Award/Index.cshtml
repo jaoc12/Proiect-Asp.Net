@@ -21,7 +21,10 @@
     <br />
 }
 
-@Html.ActionLink("Add award", "New")
-<br />
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Add award", "New")
+    <br />
+}
 @Html.ActionLink("Back to start", "Index", "Start")
 

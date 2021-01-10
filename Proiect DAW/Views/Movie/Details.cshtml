@@ -58,21 +58,24 @@
     </div>
 </div>
 
-<div class="btn-group">
-    @using (Html.BeginForm(actionName: "Edit", controllerName: "Movie", method: FormMethod.Get,
-        routeValues: new { id = Model.MovieId }))
-    {
-        <button style="margin-right:5px" class="btn btn-primary" type="submit">Update</button>
-    }
+@if (User.IsInRole("Admin"))
+{
+    <div class="btn-group">
+        @using (Html.BeginForm(actionName: "Edit", controllerName: "Movie", method: FormMethod.Get,
+            routeValues: new { id = Model.MovieId }))
+        {
+            <button style="margin-right:5px" class="btn btn-primary" type="submit">Update</button>
+        }
 
-    @using (Html.BeginForm(actionName: "Delete", controllerName: "Movie", method: FormMethod.Post,
-        routeValues: new { id = Model.MovieId }))
-    {
-        @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn btn-primary" type="submit">Delete</button>
-    }
-</div>
-<br />
-<br />
+        @using (Html.BeginForm(actionName: "Delete", controllerName: "Movie", method: FormMethod.Post,
+            routeValues: new { id = Model.MovieId }))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-primary" type="submit">Delete</button>
+        }
+    </div>
+    <br />
+    <br />
+}
 
 @Html.ActionLink("Go back to the list of movies.", "Index")

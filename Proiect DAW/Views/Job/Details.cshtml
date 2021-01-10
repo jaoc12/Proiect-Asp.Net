@@ -20,20 +20,23 @@
 </div>
 <br />
 
-@using (Html.BeginForm(actionName: "Edit", controllerName: "Job", method: FormMethod.Get,
-    routeValues: new { id = Model.JobId }))
+@if (User.IsInRole("Admin"))
 {
-    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
-}
-<br />
+    using (Html.BeginForm(actionName: "Edit", controllerName: "Job", method: FormMethod.Get,
+        routeValues: new { id = Model.JobId }))
+    {
+        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+    }
+    <br />
 
-@using (Html.BeginForm(actionName: "Delete", controllerName: "Job", method: FormMethod.Post,
-    routeValues: new { id = Model.JobId }))
-{
-    @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+    using (Html.BeginForm(actionName: "Delete", controllerName: "Job", method: FormMethod.Post,
+            routeValues: new { id = Model.JobId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+    }
+    <br />
 }
-<br />
 
 @Html.ActionLink("Go back to the list of jobs.", "Index")
 

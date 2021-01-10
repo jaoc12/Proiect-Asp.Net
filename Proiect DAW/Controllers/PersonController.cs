@@ -35,6 +35,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing person id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult New()
         {
@@ -42,6 +43,7 @@ namespace Proiect_DAW.Controllers
             return View(personContact);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult New(PersonContactViewModel personContact)
         {
@@ -76,6 +78,7 @@ namespace Proiect_DAW.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public ActionResult Delete(int id)
         {
@@ -90,6 +93,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Could not find the person with id " + id.ToString() + "!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -116,6 +120,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing person id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public ActionResult Edit(int id, PersonContactViewModel personContact)
         {

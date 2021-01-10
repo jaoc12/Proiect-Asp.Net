@@ -21,6 +21,9 @@
     <br />
 }
 
-@Html.ActionLink("Add studio", "New")
-<br />
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Add studio", "New")
+    <br />
+}
 @Html.ActionLink("Back to start", "Index", "Start")

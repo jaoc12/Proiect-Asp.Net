@@ -34,6 +34,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing contact info id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult New()
         {
@@ -41,6 +42,7 @@ namespace Proiect_DAW.Controllers
             return View(personContact);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult New(PersonContactViewModel personContact)
         {
@@ -68,6 +70,7 @@ namespace Proiect_DAW.Controllers
             return View(personContact);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public ActionResult Delete(int id)
         {
@@ -81,6 +84,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Could not find the contact info with id " + id.ToString() + "!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -98,6 +102,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing contact info id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public ActionResult Edit(int id, ContactInfo contactRequest)
         {

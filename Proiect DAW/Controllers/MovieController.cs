@@ -39,6 +39,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing movie id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult New()
         {
@@ -53,6 +54,7 @@ namespace Proiect_DAW.Controllers
             return View(movie);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult New(Movie movieRequest)
         {
@@ -91,6 +93,7 @@ namespace Proiect_DAW.Controllers
             return View(movieRequest);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -130,6 +133,7 @@ namespace Proiect_DAW.Controllers
             return HttpNotFound("Missing movie id parameter!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public ActionResult Edit(int id, Movie movieRequest)
         {
@@ -180,6 +184,7 @@ namespace Proiect_DAW.Controllers
             return View(movieRequest);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public ActionResult Delete(int id)
         {

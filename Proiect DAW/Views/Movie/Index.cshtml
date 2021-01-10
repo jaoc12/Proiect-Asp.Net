@@ -21,6 +21,9 @@
     <br />
 }
 
-@Html.ActionLink("Add movie", "New")
-<br />
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Add movie", "New")
+    
+}
 @Html.ActionLink("Back to start", "Index", "Start")

@@ -34,7 +34,9 @@
     </div>
     <br />
 }
-
-@Html.ActionLink("Add contact info", "New")
-<br />
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Add contact info", "New")
+    <br />
+}
 @Html.ActionLink("Back to start", "Index", "Start")
