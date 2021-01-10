@@ -167,9 +167,7 @@ namespace Proiect_DAW.Controllers
                     // To every new user, the role user will be binded to it
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    if (!roleManager.RoleExists("User"))
-                        roleManager.Create(new IdentityRole("User"));
-                    UserManager.AddToRole(user.Id, "User");
+                    UserManager.AddToRole(user.Id, "Critic");
 
                     return RedirectToAction("Index", "Start");
                 }
