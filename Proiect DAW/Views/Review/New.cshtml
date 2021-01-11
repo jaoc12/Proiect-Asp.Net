@@ -1,0 +1,31 @@
+﻿@model Proiect_DAW.Models.Review
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Review", method: FormMethod.Post))
+{
+    @Html.HiddenFor(r => r.MovieId, new { id = "MovieId" })
+    @Html.HiddenFor(r => r.AuthorEmail, new { id = "AuthorEmail" })
+
+    @Html.Label("Content", "Content:")
+    <br />
+    @Html.TextBoxFor(r => r.Content, null, new { placeholder = "Type in the review", @class = "form-control" })
+    @Html.ValidationMessageFor(r => r.Content, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Rating", "Rating:")
+    <br />
+    @Html.TextBoxFor(r => r.Rating, null, new { placeholder = "0", @class = "form-control" })
+    @Html.ValidationMessageFor(r => r.Rating, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+
+@Html.ActionLink("Back to reviews", "Details", routeValues: new { id = Model.MovieId })
+

@@ -26,6 +26,8 @@ namespace Proiect_DAW.Models
         public DbSet<Credit> Credits { get; set; }
 
         public DbSet<Award> Awards { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
     }
 
     public class Initp : DropCreateDatabaseAlways<DbCtx>
@@ -111,6 +113,7 @@ namespace Proiect_DAW.Models
 
             context.Movies.Add(new Movie
             {
+                MovieId = 1,
                 Title = "Star Wars",
                 StudioId = 1,
                 Awards = new List<Award> { award1},
@@ -131,6 +134,7 @@ namespace Proiect_DAW.Models
             });
             context.Movies.Add(new Movie
             {
+                MovieId = 2,
                 Title = "Avengers",
                 StudioId = 2,
                 Awards = new List<Award> { award2 },
@@ -149,6 +153,25 @@ namespace Proiect_DAW.Models
                     }
                 }
             });
+
+            Review review1 = new Review
+            {
+                Content = "Good space movie!",
+                Rating = (decimal)8.3,
+                MovieId = 1,
+                AuthorEmail = "critic@critic.com"
+            };
+
+            Review review2 = new Review
+            {
+                Content = "Good super hero movie!",
+                Rating = (decimal)8.1,
+                MovieId = 2,
+                AuthorEmail = "critic@critic.com"
+            };
+
+            context.Reviews.Add(review1);
+            context.Reviews.Add(review2);
             base.Seed(context);
         }
     }

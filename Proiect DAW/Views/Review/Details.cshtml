@@ -1,0 +1,61 @@
+﻿@model Proiect_DAW.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Html.Label("Title", "Movie Title:")
+        <br />
+        @Html.ActionLink(Model.Title, "Details", "Movie", routeValues: new { id = Model.MovieId }, null)
+        <br />
+    </div>
+
+    @if (Model.Reviews.Count > 0)
+    {
+        @Html.Label("Reviews", "Reviews:")
+        foreach (var review in Model.Reviews)
+        {
+            <br />
+            <p>@review.Content</p>
+            <p>Rated @review.Rating/10</p>
+            <p>Review by @review.AuthorEmail</p>
+        }
+    }
+</div>
+
+@if (User.IsInRole("Critic"))
+{
+    if (Model.Reviews.Any(r => r.AuthorEmail.Equals(User.Identity.Name)))
+    {
+        <div class="btn-group">
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Review", method: FormMethod.Get,
+                routeValues: new { id = Model.MovieId}))
+            {
+                <button style="margin-right:5px" class="btn btn-primary" type="submit">Update my review</button>
+            }
+
+            @using (Html.BeginForm(actionName: "Delete", controllerName: "Review", method: FormMethod.Post,
+                routeValues: new { id = Model.MovieId, author = User.Identity.Name }))
+            {
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-primary" type="submit">Delete my review</button>
+            }
+        </div>
+        <br />
+        <br />
+    }
+    else
+    {
+        using (Html.BeginForm(actionName: "New", controllerName: "Review", method: FormMethod.Get,
+                routeValues: new { id = Model.MovieId}))
+        {
+            <button style="margin-right:5px" class="btn btn-primary" type="submit">Create new review</button>
+        }
+    }
+}
+
+@Html.ActionLink("Go back to the list of reviews.", "Index")

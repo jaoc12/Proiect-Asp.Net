@@ -26,13 +26,15 @@ namespace Proiect_DAW.Models
         public virtual ICollection<Credit> Credits { get; set; }
 
         // one-to-many cu Studio
-
         [ForeignKey("Studio")]
         public int StudioId { get; set; }
         public Studio Studio { get; set; }
 
         // many-to-many cu award
         public virtual ICollection<Award> Awards { get; set; }
+
+        // many-to-one cu Review
+        public virtual ICollection<Review> Reviews { get; set; }
 
         [NotMapped]
         public List<CheckBoxViewModel> AwardsList { get; set; }
@@ -48,5 +50,18 @@ namespace Proiect_DAW.Models
 
         [NotMapped]
         public List<CheckBoxViewModel> CreditsList { get; set; }
+
+        public string AverageRating()
+        {
+            if (Reviews.Count() > 0)
+            {
+                var rating = Reviews.Average(r => r.Rating).ToString();
+                return rating;
+            }
+            else
+            {
+                return "Not rated";
+            }
+        }
     }
 }

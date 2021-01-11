@@ -41,7 +41,7 @@
 
     <div class="row">
         @foreach (var job in Model.JobsList)
-            {
+        {
             <div class="col-md-4">
                 <p>@job.Type</p>
                 <ul>
@@ -54,8 +54,15 @@
                     }
                 </ul>
             </div>
-            }
+        }
     </div>
+
+    @if (Model.Reviews.Count > 0)
+    {
+        @Html.Label("Rating", "Rating:")
+        @:&nbsp
+        @Html.ActionLink(Model.AverageRating(), "Details", "Review", routeValues: new { id = Model.MovieId }, null)
+    }
 </div>
 
 @if (User.IsInRole("Admin"))

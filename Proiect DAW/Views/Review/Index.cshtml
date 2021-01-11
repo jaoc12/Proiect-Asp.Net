@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Reviews";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var movie in ViewBag.Movies)
+{
+    <div class="panel-body">
+        @Html.Label("Movie", "Movie:")
+        <br />
+        <p>@movie.Title</p>
+
+        @Html.Label("Rating", "Rating:") 
+        <p>@movie.AverageRating()</p>
+
+        @using (Html.BeginForm(actionName: "Details", controllerName: "Review", method: FormMethod.Get,
+                routeValues: new { id = movie.MovieId }))
+        {
+            <button class="btn btn-primary">Details</button>
+        }
+    </div>
+    <br />
+}
+
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Add review", "New")
+    <br />
+}
+@Html.ActionLink("Back to start", "Index", "Start")
