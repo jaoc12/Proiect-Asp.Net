@@ -3,15 +3,59 @@
     ViewBag.Title = "Home";
 }
 
-<h2>@ViewBag.Title</h2>
 
-<div class="accordion">
-    <div class="col-1">
-        @Html.ActionLink("Movies", "Index", "Movie")
-        @Html.ActionLink("Awards", "Index", "Award")
-        @Html.ActionLink("Studios", "Index", "Studio")
-        @Html.ActionLink("Jobs", "Index", "Job")
-        @Html.ActionLink("Persons", "Index", "Person")
-        @Html.ActionLink("Contact Info for Persons", "Index", "ContactInfo")
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<br />
+
+<div>
+    <div class="btn-group d-flex" role="group">
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Movie", method: FormMethod.Get,
+                                new { @class = "btn" }))
+        {
+            <button class="btn btn-primary">Movies</button>
+        }
+
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Award", method: FormMethod.Get,
+                                new { @class = "btn" }))
+        {
+            <button class="btn btn-primary">Awards</button>
+        }
+
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Review", method: FormMethod.Get,
+                            new { @class = "btn" }))
+        {
+            <button class="btn btn-primary">Reviews</button>
+        }
+
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Studio", method: FormMethod.Get,
+                                new { @class = "btn" }))
+        {
+            <button class="btn btn-primary">Studios</button>
+        }
+
+    </div>
+
+    <br />
+
+    <div class="btn-group d-flex">
+
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Person", method: FormMethod.Get,
+                                new { @class = "btn" }))
+        {
+            <button class="btn btn-primary">People</button>
+        }
+
+        @using (Html.BeginForm(actionName: "Index", controllerName: "Job", method: FormMethod.Get,
+                                new { @class = "btn" }))
+        {
+            <button class="btn btn-primary">Jobs</button>
+        }
+
+        @using (Html.BeginForm(actionName: "Index", controllerName: "ContactInfo", method: FormMethod.Get,
+                                new { @class = "btn" }))
+        {
+            <button class="btn btn-primary">Contact infos</button>
+        }
     </div>
 </div>

@@ -96,14 +96,14 @@ namespace Proiect_DAW.Models
 
             Person person1 = new Person
             {
-                Name = "Ab",
+                Name = "Taratino",
                 ContactInfo = contact1,
                 Birthday = new DateTime(1975, 10, 16)
             };
 
             Person person2 = new Person
             {
-                Name = "Sasrs",
+                Name = "Robert",
                 ContactInfo = contact2,
                 Birthday = new DateTime(1969, 12, 28)
             };

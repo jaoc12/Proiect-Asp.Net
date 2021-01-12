@@ -63,6 +63,10 @@
         @:&nbsp
         @Html.ActionLink(Model.AverageRating(), "Details", "Review", routeValues: new { id = Model.MovieId }, null)
     }
+    else
+    {
+        @Html.ActionLink("No reviews found", "Details", "Review", routeValues: new { id = Model.MovieId }, null)
+    }
 </div>
 
 @if (User.IsInRole("Admin"))
