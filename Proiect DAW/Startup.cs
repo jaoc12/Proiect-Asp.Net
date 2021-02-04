@@ -43,15 +43,14 @@ namespace Proiect_DAW
                 }
             }
 
-            // ATENTIE !!! Pentru proiecte, pentru a adauga un rol nou trebuie sa adaugati secventa:
             if (!roleManager.RoleExists("Critic"))
             {
-                // adaugati rolul specific aplicatiei voastre
+                // adaugam rolul userului normal
                 var role = new IdentityRole();
                 role.Name = "Critic";
                 roleManager.Create(role);
 
-                // se adauga utilizatorul
+                // se adauga userului
                 var user = new ApplicationUser();
                 user.UserName = "critic@critic.com";
                 user.Email = "critic@critic.com";
